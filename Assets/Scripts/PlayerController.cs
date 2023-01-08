@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform player;
+    [SerializeField] private Transform spawnPoint;
 
     
     public void TurnLeft()
@@ -31,7 +32,8 @@ public class PlayerController : MonoBehaviour
 
     public void Attack()
     {
-        GameObject strike = Instantiate(bulletPrefab, player.position, Quaternion.identity);
+        Vector3 pos = spawnPoint.position;
+        GameObject strike = Instantiate(bulletPrefab, new Vector3(pos.x, pos.y, pos.z) , Quaternion.identity, player.parent);
         strike.GetComponentInChildren<Strike>().player = player;
     }
 }
