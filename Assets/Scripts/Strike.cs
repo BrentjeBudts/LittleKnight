@@ -18,10 +18,16 @@ public class Strike : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-   
         if (!hasHit)
         {
             transform.GetComponent<Rigidbody2D>().velocity = new Vector2(direction,0) * speed;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Debug.Log("Strike Collision");
+        Destroy(collision.gameObject);
+        Destroy(gameObject);
     }
 }
