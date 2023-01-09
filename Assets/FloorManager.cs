@@ -14,7 +14,6 @@ public class FloorManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("start in floor");
         Instantiate(enemies[0], rightSpawner.transform.position, Quaternion.identity,transform.parent);
     }
 }
