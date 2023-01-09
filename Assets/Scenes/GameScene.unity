@@ -128,31 +128,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3021933356779725053, guid: bafa083cebd8a44b3a2ea74ef38ae939, type: 3}
   m_PrefabInstance: {fileID: 1698289955}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &506444478 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3021933356779725054, guid: bafa083cebd8a44b3a2ea74ef38ae939, type: 3}
-  m_PrefabInstance: {fileID: 532424763}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &506444479 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3021933356779725053, guid: bafa083cebd8a44b3a2ea74ef38ae939, type: 3}
   m_PrefabInstance: {fileID: 532424763}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &506444483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 506444478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: becc59c4bd18b484ca31134e034142d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
-  player: {fileID: 0}
-  spawnPoint: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,6 +438,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &1216750098 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3577152749955836512, guid: f7dc98754f5bf4445966ad521f0ab1c1, type: 3}
+  m_PrefabInstance: {fileID: 1560876571}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1342843237
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,14 +530,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3577152749063317751, guid: f7dc98754f5bf4445966ad521f0ab1c1, type: 3}
-      propertyPath: m_Name
-      value: Boundaries
-      objectReference: {fileID: 0}
-    - target: {fileID: 3577152749601540812, guid: f7dc98754f5bf4445966ad521f0ab1c1, type: 3}
-      propertyPath: m_Name
-      value: BL
-      objectReference: {fileID: 0}
     - target: {fileID: 3577152749955836512, guid: f7dc98754f5bf4445966ad521f0ab1c1, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -600,10 +577,6 @@ PrefabInstance:
     - target: {fileID: 3577152749955836527, guid: f7dc98754f5bf4445966ad521f0ab1c1, type: 3}
       propertyPath: m_Name
       value: Knight
-      objectReference: {fileID: 0}
-    - target: {fileID: 3577152750967275405, guid: f7dc98754f5bf4445966ad521f0ab1c1, type: 3}
-      propertyPath: m_Name
-      value: BR
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7dc98754f5bf4445966ad521f0ab1c1, type: 3}
@@ -874,6 +847,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b5c3342956ea4f2391c4e10ce034478, type: 3}
+--- !u!4 &1809280974 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3577152750794038033, guid: f7dc98754f5bf4445966ad521f0ab1c1, type: 3}
+  m_PrefabInstance: {fileID: 1560876571}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1829650009
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,8 +970,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 391328596694268473, guid: 06bb008115a5ccd4ab2d7780a2121850, type: 3}
-  player: {fileID: 0}
-  spawnPoint: {fileID: 0}
+  player: {fileID: 1216750098}
+  spawnPoint: {fileID: 1809280974}
 --- !u!1 &2026342265
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,7 +1170,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.16029322, y: -2.3192706}
+  m_Offset: {x: 0.1602931, y: -2.3683503}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1203,5 +1181,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.570199, y: 0.7896652}
+  m_Size: {x: 6.570199, y: 0.6915059}
   m_EdgeRadius: 0

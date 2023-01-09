@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
 
     
+    //TODO flip feels weird change with new sprite;
+    
     public void TurnLeft()
     {
         if (facingRight)
