@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class OrkController : MonoBehaviour
 {
-    private int hp;
 
     private bool hasCollided;
 
     public int moveSpeed;
     public bool canAttack;
-    
+    public bool moveRight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,13 +25,20 @@ public class OrkController : MonoBehaviour
         
         if (!hasCollided && canAttack )
         {
-            transform.parent.position += Vector3.right * (moveSpeed * Time.deltaTime);
+            if (moveRight)
+            {
+                transform.parent.position += Vector3.right * (moveSpeed * Time.deltaTime);
+            }
+            else
+            {
+                transform.parent.position += Vector3.left * (moveSpeed * Time.deltaTime);
+            }
         }
     }
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.name.Equals("BL") || col.gameObject.name.Equals("BR"))
+        if (col.gameObject.name.Equals("Knight"))
         {
             hasCollided = true;
             Attack();

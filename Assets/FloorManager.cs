@@ -10,11 +10,28 @@ public class FloorManager : MonoBehaviour
     public GameObject leftSpawner;
     public GameObject rightSpawner;
 
-    public bool isOnFloor;
+    public GameObject enemy1;
+    public GameObject enemy2;
 
+    public bool isOnFloor;
+    public bool isFinished;
+    
     private void Start()
     {
-        Debug.Log("start in floor");
-        Instantiate(enemies[0], rightSpawner.transform.position, Quaternion.identity,transform.parent);
+        enemy1  = Instantiate(enemies[0], rightSpawner.transform.position, Quaternion.identity,transform.parent);
+        enemy1.GetComponentInChildren<OrkController>().moveRight = false;
+        enemy2 = Instantiate(enemies[0], leftSpawner.transform.position, Quaternion.identity,transform.parent);
+        enemy2.GetComponentInChildren<OrkController>().moveRight = true;
     }
+
+    private void Update()
+    {
+        if (!enemy1 && !enemy2)
+        {
+            isFinished = true;
+            isOnFloor = false;
+            Debug.Log("finished stage");
+        }
+    }
+    
 }

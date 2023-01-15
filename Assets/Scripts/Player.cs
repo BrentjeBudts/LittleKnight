@@ -1,21 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
+    private FloorManager activeFloor;
+    
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (activeFloor)
         {
-            Input.GetTouch(0); 
+            activeFloor.isOnFloor = true;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        Debug.Log("stom wijf houd u bakkes");
+        activeFloor = col.gameObject.GetComponentInChildren<FloorManager>();
     }
 }

@@ -27,7 +27,7 @@ public class Strike : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log("Strike Collision");
-        Destroy(collision.gameObject);
+        Destroy(collision.transform.parent.gameObject);
         Destroy(gameObject);
     }
 }

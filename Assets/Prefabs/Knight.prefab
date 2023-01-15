@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3577152749063317736}
   m_Layer: 3
-  m_Name: Bounderies
+  m_Name: Boundaries
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3577152749601540813}
   - component: {fileID: 3577152749601540814}
   m_Layer: 3
-  m_Name: Left
+  m_Name: BL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 3577152749955836512}
   - component: {fileID: 6795093798898457603}
   - component: {fileID: 5465014777100171625}
+  - component: {fileID: 1216750099}
   m_Layer: 3
   m_Name: Knight
   m_TagString: Untagged
@@ -206,6 +207,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1216750099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3577152749955836527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8816313182ecc448a702639728d458f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3577152750454427332
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +430,7 @@ GameObject:
   - component: {fileID: 3577152750967275406}
   - component: {fileID: 3577152750967275407}
   m_Layer: 3
-  m_Name: Right
+  m_Name: BR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
