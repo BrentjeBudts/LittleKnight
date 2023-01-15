@@ -14,7 +14,8 @@ public class FloorManager : MonoBehaviour
     public GameObject enemy2;
 
     public bool isOnFloor;
-
+    public bool isFinished;
+    
     private void Start()
     {
         enemy1  = Instantiate(enemies[0], rightSpawner.transform.position, Quaternion.identity,transform.parent);
@@ -27,7 +28,10 @@ public class FloorManager : MonoBehaviour
     {
         if (!enemy1 && !enemy2)
         {
+            isFinished = true;
+            isOnFloor = false;
             Debug.Log("finished stage");
         }
     }
+    
 }
