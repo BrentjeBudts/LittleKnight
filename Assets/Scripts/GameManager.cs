@@ -12,16 +12,15 @@ public class GameManager : MonoBehaviour
 
     private List<GameObject> floors;
     private GameObject activeFloor;
+    private GameObject previousFloor;
     private int floorIndex = 0;
-    private int curFloor;
-    
-    
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         floors = new List<GameObject>();
-        curFloor = 0;
         for (int i = 0; i <= 10; i++)
         {
             floorIndex = i;
@@ -45,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     void GetActiveFloor()
     {
-        activeFloor = floors[curFloor];
+        activeFloor = floors[0];
         player.activeFloor = activeFloor.GetComponentInChildren<FloorManager>();
         player.transform.position = activeFloor.GetComponentInChildren<FloorManager>().playerSpawner.position;
     }
@@ -64,12 +63,14 @@ public class GameManager : MonoBehaviour
         startPoint = floor.GetComponentInChildren<FloorManager>().transform;
         floor.name = "floor" + floorIndex;
         floors.Add(floor);
+        Destroy(previousFloor);
     }
 
     void PlayerClimbsUp()
     {
+        previousFloor = activeFloor;
         player.activeFloor.isOnFloor = false;
-        curFloor++;
+        floors.Remove(floors[0]);
         GetActiveFloor();
     }
 }
