@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
     private bool facingRight = true;
 
     [SerializeField] private GameObject bulletPrefab;

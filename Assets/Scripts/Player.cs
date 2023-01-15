@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    private FloorManager activeFloor;
+    public FloorManager activeFloor;
     
 
     // Update is called once per frame
@@ -16,11 +16,5 @@ public class Player : MonoBehaviour
         {
             activeFloor.isOnFloor = true;
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        Debug.Log("stom wijf houd u bakkes");
-        activeFloor = col.gameObject.GetComponentInChildren<FloorManager>();
     }
 }

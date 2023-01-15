@@ -8,10 +8,12 @@ public class GameManager : MonoBehaviour
     public GameObject floorPrefab;
 
     [SerializeField] Transform startPoint;
-    [SerializeField] private GameObject player;
+    [SerializeField] private Player player;
 
     private List<GameObject> floors;
     private GameObject activeFloor;
+    private int floorIndex = 0;
+    private int curFloor;
     
     
 
@@ -19,37 +21,33 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         floors = new List<GameObject>();
+        curFloor = 0;
         for (int i = 0; i <= 10; i++)
         {
+            floorIndex = i;
             GameObject floor = Instantiate(floorPrefab, startPoint.position, Quaternion.identity);
             startPoint = floor.GetComponentInChildren<FloorManager>().transform;
+            floor.name = "floor" + floorIndex;
             floors.Add(floor);
         }
+        
+        GetActiveFloor();
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetActiveFloor();
-        if (activeFloor)
+        if (activeFloor.GetComponentInChildren<FloorManager>().isFinished)
         {
-            if (activeFloor.GetComponentInChildren<FloorManager>().isFinished)
-            {
-                LoadNextFloor();
-            }
+            LoadNextFloor();
         }
     }
 
     void GetActiveFloor()
     {
-        foreach (GameObject go in floors)
-        {
-            if (go.GetComponentInChildren<FloorManager>().isOnFloor)
-            {
-                activeFloor = go;
-                Debug.Log("found");
-            }
-        }
+        activeFloor = floors[curFloor];
+        player.activeFloor = activeFloor.GetComponentInChildren<FloorManager>();
+        player.transform.position = activeFloor.GetComponentInChildren<FloorManager>().playerSpawner.position;
     }
 
     void LoadNextFloor()
@@ -57,17 +55,21 @@ public class GameManager : MonoBehaviour
         Debug.Log("Loading next stage");
         PlayerClimbsUp();
         InitiateNewFloor();
-        
     }
 
     void InitiateNewFloor()
     {
-        
+        floorIndex++;
+        GameObject floor = Instantiate(floorPrefab, startPoint.position, Quaternion.identity);
+        startPoint = floor.GetComponentInChildren<FloorManager>().transform;
+        floor.name = "floor" + floorIndex;
+        floors.Add(floor);
     }
 
     void PlayerClimbsUp()
     {
-        
+        player.activeFloor.isOnFloor = false;
+        curFloor++;
+        GetActiveFloor();
     }
-    
 }

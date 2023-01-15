@@ -7,8 +7,9 @@ public class FloorManager : MonoBehaviour
 {
     public GameObject[] enemies;
 
-    public GameObject leftSpawner;
-    public GameObject rightSpawner;
+    public Transform leftSpawner;
+    public Transform rightSpawner;
+    public Transform playerSpawner;
 
     public GameObject enemy1;
     public GameObject enemy2;
@@ -18,9 +19,9 @@ public class FloorManager : MonoBehaviour
     
     private void Start()
     {
-        enemy1  = Instantiate(enemies[0], rightSpawner.transform.position, Quaternion.identity,transform.parent);
+        enemy1  = Instantiate(enemies[0], rightSpawner.position, Quaternion.identity,transform.parent);
         enemy1.GetComponentInChildren<OrkController>().moveRight = false;
-        enemy2 = Instantiate(enemies[0], leftSpawner.transform.position, Quaternion.identity,transform.parent);
+        enemy2 = Instantiate(enemies[0], leftSpawner.position, Quaternion.identity,transform.parent);
         enemy2.GetComponentInChildren<OrkController>().moveRight = true;
     }
 
@@ -33,5 +34,4 @@ public class FloorManager : MonoBehaviour
             Debug.Log("finished stage");
         }
     }
-    
 }
