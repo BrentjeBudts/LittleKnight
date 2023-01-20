@@ -12,7 +12,7 @@ public class Strike : MonoBehaviour
 
     private void Start()
     {
-        direction = player.localScale.x;
+        direction = -player.localScale.x;
     }
 
     // Update is called once per frame
