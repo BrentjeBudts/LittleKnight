@@ -7,12 +7,14 @@ public class FloorManager : MonoBehaviour
 {
     public GameObject[] enemies;
 
+
+    public Transform nextFloorPosition;
     public Transform leftSpawner;
     public Transform rightSpawner;
     public Transform playerSpawner;
 
-    public GameObject enemy1;
-    public GameObject enemy2;
+    private GameObject enemy1;
+    private GameObject enemy2;
 
     public bool isOnFloor;
     public bool isFinished;
@@ -21,12 +23,11 @@ public class FloorManager : MonoBehaviour
     
     private void Start()
     {
-        enemy1  = Instantiate(enemies[0], rightSpawner.position, Quaternion.identity,transform.parent);
+        enemy1  = Instantiate(enemies[0], rightSpawner.position, Quaternion.identity,transform);
         enemy1.GetComponentInChildren<OrkController>().moveRight = false;
-        enemy1.GetComponentInChildren<OrkController>().borderCollider = border;
-        enemy2 = Instantiate(enemies[0], leftSpawner.position, Quaternion.identity,transform.parent);
+
+        enemy2 = Instantiate(enemies[0], leftSpawner.position, Quaternion.identity,transform);
         enemy2.GetComponentInChildren<OrkController>().moveRight = true;
-        enemy2.GetComponentInChildren<OrkController>().borderCollider = border;
     }
 
     private void Update()
@@ -35,7 +36,7 @@ public class FloorManager : MonoBehaviour
         {
             isFinished = true;
             isOnFloor = false;
-            Debug.Log("finished stage");
+            //Debug.Log("finished stage");
         }
     }
 }

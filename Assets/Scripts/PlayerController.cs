@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     private bool facingRight = false;
 
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform player;
+    [SerializeField] private SpriteRenderer player;
     [SerializeField] private Transform spawnPoint;
 
     public Animator animator;
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
         if (facingRight)
         {
             facingRight = false;
-            player.transform.localScale = new Vector3(0.2f,0.2f,1);
+            player.flipX = false;
         }
     }
 
@@ -28,17 +28,17 @@ public class PlayerController : MonoBehaviour
         if (!facingRight)
         {
             facingRight = true;
-            player.transform.localScale = new Vector3(-0.2f,0.2f,1);
+            player.flipX = true;
         }
     }
 
     public void Attack()
     {
-        Vector3 pos = spawnPoint.position;
-        GameObject strike = Instantiate(bulletPrefab, new Vector3(pos.x, pos.y, pos.z) , Quaternion.identity, player);
         
-        //Changing parent so that it doesnt flip with the player
-        strike.transform.parent = player.parent;
+        //TODO fix spawnposition
+        Vector3 pos = spawnPoint.position;
+        GameObject strike = Instantiate(bulletPrefab, new Vector3(pos.x, pos.y, pos.z) , Quaternion.identity, player.gameObject.transform.parent);
+        
         strike.GetComponentInChildren<Strike>().player = player;
         animator.SetTrigger("Strike");
     }

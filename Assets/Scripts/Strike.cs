@@ -7,12 +7,12 @@ public class Strike : MonoBehaviour
 {
     private bool hasHit = false;
     public float speed;
-    public Transform player;
+    public SpriteRenderer player;
     private float direction;
 
     private void Start()
     {
-        direction = -player.localScale.x;
+        direction = player.flipX ? 1 : -1;
     }
 
     // Update is called once per frame
@@ -26,8 +26,7 @@ public class Strike : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Debug.Log("Strike Collision");
-        Destroy(collision.transform.parent.gameObject);
+        Destroy(collision.gameObject);
         Destroy(gameObject);
     }
 }

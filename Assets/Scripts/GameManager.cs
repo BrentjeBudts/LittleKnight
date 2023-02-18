@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject[] enemies;
     public GameObject floorPrefab;
 
-    [SerializeField] Transform startPoint;
+    [SerializeField] Transform nextFloorPosition;
     [SerializeField] private Player player;
+    [SerializeField] private ScrollDown scroller;
 
     private List<GameObject> floors;
-    private GameObject activeFloor;
-    private GameObject previousFloor;
+    public GameObject activeFloor;
+    
     private int floorIndex = 0;
 
 
@@ -24,53 +25,51 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i <= 10; i++)
         {
             floorIndex = i;
-            GameObject floor = Instantiate(floorPrefab, startPoint.position, Quaternion.identity);
-            startPoint = floor.GetComponentInChildren<FloorManager>().transform;
+            GameObject floor = Instantiate(floorPrefab, nextFloorPosition.position, Quaternion.identity,transform.parent);
+            nextFloorPosition = floor.GetComponent<FloorManager>().nextFloorPosition;
             floor.name = "floor" + floorIndex;
             floors.Add(floor);
         }
-        
-        GetActiveFloor();
+        SetNewFloor();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (activeFloor.GetComponentInChildren<FloorManager>().isFinished)
+        if (activeFloor.GetComponent<FloorManager>().isFinished)
         {
-            LoadNextFloor();
+            Debug.Log("Handling next stage");
+            GameObject previousFloor = activeFloor;
+            player.activeFloor.isOnFloor = false;
+
+            scroller.previousStartpoint = new Vector3(floors[0].transform.position.x,floors[0].transform.position.y);
+            floors.Remove(floors[0]);
+            activeFloor = floors[0];
+
+            scroller.floors = floors;
+            scroller.scroll = true;
+            
+            InitiateNewFloor(previousFloor);
+            
         }
     }
 
-    void GetActiveFloor()
+    public void SetNewFloor()
     {
         activeFloor = floors[0];
-        player.activeFloor = activeFloor.GetComponentInChildren<FloorManager>();
-        player.transform.position = activeFloor.GetComponentInChildren<FloorManager>().playerSpawner.position;
+        player.activeFloor = activeFloor.GetComponent<FloorManager>();
+        player.transform.position = activeFloor.GetComponent<FloorManager>().playerSpawner.position;
     }
-
-    void LoadNextFloor()
-    {
-        Debug.Log("Loading next stage");
-        PlayerClimbsUp();
-        InitiateNewFloor();
-    }
-
-    void InitiateNewFloor()
+    
+    void InitiateNewFloor(GameObject toDestroy)
     {
         floorIndex++;
-        GameObject floor = Instantiate(floorPrefab, startPoint.position, Quaternion.identity);
-        startPoint = floor.GetComponentInChildren<FloorManager>().transform;
+        GameObject floor = Instantiate(floorPrefab, nextFloorPosition.position, Quaternion.identity);
+        nextFloorPosition = floor.GetComponent<FloorManager>().nextFloorPosition;
         floor.name = "floor" + floorIndex;
         floors.Add(floor);
-        Destroy(previousFloor);
+        Debug.Log("Destroying floor " + toDestroy.name );
+        Destroy(toDestroy);
     }
-
-    void PlayerClimbsUp()
-    {
-        previousFloor = activeFloor;
-        player.activeFloor.isOnFloor = false;
-        floors.Remove(floors[0]);
-        GetActiveFloor();
-    }
+    
 }
