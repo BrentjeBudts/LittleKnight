@@ -16,13 +16,17 @@ public class FloorManager : MonoBehaviour
 
     public bool isOnFloor;
     public bool isFinished;
+
+    [SerializeField] private Collider2D border;
     
     private void Start()
     {
         enemy1  = Instantiate(enemies[0], rightSpawner.position, Quaternion.identity,transform.parent);
         enemy1.GetComponentInChildren<OrkController>().moveRight = false;
+        enemy1.GetComponentInChildren<OrkController>().borderCollider = border;
         enemy2 = Instantiate(enemies[0], leftSpawner.position, Quaternion.identity,transform.parent);
         enemy2.GetComponentInChildren<OrkController>().moveRight = true;
+        enemy2.GetComponentInChildren<OrkController>().borderCollider = border;
     }
 
     private void Update()

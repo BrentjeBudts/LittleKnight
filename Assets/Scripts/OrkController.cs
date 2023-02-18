@@ -11,6 +11,7 @@ public class OrkController : MonoBehaviour
     public int moveSpeed;
     public bool canAttack;
     public bool moveRight;
+    public Collider2D borderCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -38,8 +39,10 @@ public class OrkController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.name.Equals("Knight"))
+   
+        if (col.collider == borderCollider)
         {
+            Debug.Log("BORDER");
             hasCollided = true;
             Attack();
         }

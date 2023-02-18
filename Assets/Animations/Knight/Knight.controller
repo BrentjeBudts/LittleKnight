@@ -14,7 +14,7 @@ AnimatorStateMachine:
     m_Position: {x: 150, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1568315046837567801}
-    m_Position: {x: -89.74164, y: 113.07803, z: 0}
+    m_Position: {x: -90, y: 110, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 146770370737762610}
@@ -50,8 +50,8 @@ AnimatorController:
   m_Name: Knight
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: strike
-    m_Type: 4
+  - m_Name: Strike
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -78,7 +78,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: strike
+    m_ConditionEvent: Strike
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1568315046837567801}
@@ -154,10 +154,7 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: strike
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4762448200190918968}
   m_Solo: 0
@@ -167,7 +164,7 @@ AnimatorStateTransition:
   m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0.46428573
-  m_HasExitTime: 0
+  m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
