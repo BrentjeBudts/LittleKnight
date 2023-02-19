@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
 
     public FloorManager activeFloor;
+    public bool canAttack;
     
 
     // Update is called once per frame
@@ -16,5 +17,14 @@ public class Player : MonoBehaviour
         {
             activeFloor.isOnFloor = true;
         }
+    }
+    
+    public void ClearStrikes()
+    {
+        foreach (Transform strikes in transform)
+        {
+            Destroy(strikes.gameObject);
+        }
+        canAttack = false;
     }
 }

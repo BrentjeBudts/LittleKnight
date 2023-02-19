@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
         }
         SetNewFloor();
         player.transform.position = activeFloor.GetComponent<FloorManager>().playerSpawner.position;
+        player.canAttack = true;
     }
 
     // Update is called once per frame
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Handling next stage");
             GameObject previousFloor = activeFloor;
             player.activeFloor.isOnFloor = false;
-
+            player.ClearStrikes();
             scroller.previousStartpoint = new Vector2(floors[0].transform.position.x,floors[0].transform.position.y);
             floors.Remove(floors[0]);
 
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
     {
         activeFloor = floors[0];
         player.activeFloor = activeFloor.GetComponent<FloorManager>();
+        player.canAttack = true;
     }
     
     void InitiateNewFloor(GameObject toDestroy)

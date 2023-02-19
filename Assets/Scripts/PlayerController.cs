@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -34,17 +35,12 @@ public class PlayerController : MonoBehaviour
 
     public void Attack()
     {
-        
+        if(!player.GetComponent<Player>().canAttack) return; 
         //TODO fix spawnposition
         Vector3 pos = spawnPoint.position;
-        GameObject strike = Instantiate(bulletPrefab, new Vector3(pos.x, pos.y, pos.z) , Quaternion.identity, player.gameObject.transform.parent);
+        GameObject strike = Instantiate(bulletPrefab, new Vector3(pos.x, pos.y, pos.z) , Quaternion.identity, player.transform);
         
         strike.GetComponentInChildren<Strike>().player = player;
         animator.SetTrigger("Strike");
-    }
-
-    public void ClearStrikes()
-    {
-        
     }
 }
