@@ -42,4 +42,9 @@ public class PlayerController : MonoBehaviour
         strike.GetComponentInChildren<Strike>().player = player;
         animator.SetTrigger("Strike");
     }
+
+    public void ClearStrikes()
+    {
+        
+    }
 }

@@ -6,8 +6,8 @@ using UnityEngine;
 public class ScrollDown : MonoBehaviour
 {
     public bool scroll;
-    public List<GameObject> floors= new List<GameObject>();
-    public Vector3 previousStartpoint;
+    public List<GameObject> floors;
+    public Vector2 previousStartpoint;
 
     private GameManager gameManager;
 
@@ -22,18 +22,18 @@ public class ScrollDown : MonoBehaviour
     {
         if (scroll)
         {
-            ShiftGame();
+            Vector2 goToPoint = previousStartpoint;
+            foreach (GameObject floor in floors)
+            {
+                floor.transform.position = Vector2.MoveTowards(floor.transform.position,goToPoint,5f * Time.deltaTime);
+                
+                if (Vector2.Distance(goToPoint,floor.transform.position)<0.001f)
+                {
+                    scroll = false;
+                    
+                    gameManager.SetNewFloor();
+                }
+            }
         }
-    }
-
-    void  ShiftGame()
-    {
-        Vector3 goToPoint = previousStartpoint;
-        foreach (GameObject floor in floors)
-        {
-            floor.transform.position = goToPoint;
-            goToPoint = floor.GetComponent<FloorManager>().nextFloorPosition.position;
-        }
-        gameManager.SetNewFloor();
     }
 }

@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
             floors.Add(floor);
         }
         SetNewFloor();
+        player.transform.position = activeFloor.GetComponent<FloorManager>().playerSpawner.position;
     }
 
     // Update is called once per frame
@@ -42,13 +43,12 @@ public class GameManager : MonoBehaviour
             GameObject previousFloor = activeFloor;
             player.activeFloor.isOnFloor = false;
 
-            scroller.previousStartpoint = new Vector3(floors[0].transform.position.x,floors[0].transform.position.y);
+            scroller.previousStartpoint = new Vector2(floors[0].transform.position.x,floors[0].transform.position.y);
             floors.Remove(floors[0]);
-            activeFloor = floors[0];
 
             scroller.floors = floors;
             scroller.scroll = true;
-            
+            activeFloor = floors[0];
             InitiateNewFloor(previousFloor);
             
         }
@@ -58,7 +58,6 @@ public class GameManager : MonoBehaviour
     {
         activeFloor = floors[0];
         player.activeFloor = activeFloor.GetComponent<FloorManager>();
-        player.transform.position = activeFloor.GetComponent<FloorManager>().playerSpawner.position;
     }
     
     void InitiateNewFloor(GameObject toDestroy)
